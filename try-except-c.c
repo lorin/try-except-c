@@ -4,8 +4,13 @@
 #include <sys/errno.h>
 #include <sys/stat.h>
 
+
+jmp_buf env;
 const int N = 256;
 char error[N] = {0};
+
+#define TRY if(setjmp(env)==0)
+#define CATCH else
 
 void print_stat_info(struct stat buf) {
   printf("device: %d\n", buf.st_dev);
@@ -17,9 +22,8 @@ void print_stat_info(struct stat buf) {
 }
 
 int main(int argc, char *argv[]) {
-  jmp_buf env;
 
-  if(setjmp(env)==0) {
+  TRY {
 
     if(argc!=2) {
       snprintf(error, N, "Invalid number of arguments: %d", argc);
@@ -36,7 +40,7 @@ int main(int argc, char *argv[]) {
     print_stat_info(buf);
 
 
-  } else {
+  } CATCH {
     fprintf(stderr, "Error: %s\n", error);
     return -1;
   }
