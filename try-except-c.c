@@ -7,6 +7,14 @@
 
 void print_stat_info(struct stat buf);
 
+/*
+
+  Illustrates how setjmp/longjmp can be used to implement exception handling.
+
+  The keywords try,catch,throw are defined as macros in except.h
+
+ */
+
 int main(int argc, char *argv[]) {
   struct stat buf;
 
