@@ -5,7 +5,6 @@
 #include <sys/stat.h>
 
 const int N = 256;
-
 char error[N] = {0};
 
 int main(int argc, char *argv[]) {
@@ -33,7 +32,7 @@ int main(int argc, char *argv[]) {
     printf("gid: %d\n", buf.st_gid);
 
   } else {
-    fprintf(stderr, "%s\n", error);
+    fprintf(stderr, "Error: %s\n", error);
     return -1;
   }
 
