@@ -13,9 +13,7 @@ int main(int argc, char *argv[]) {
   try {
 
     if(argc!=2) {
-      char err[128];
-      snprintf(err, 128, "Invalid number of arguments: %d", argc);
-      throw(err);
+      throw("Wrong number of arguments\nUsage: try-except-c path");
     }
 
     char *path = argv[1];
