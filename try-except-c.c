@@ -7,6 +7,15 @@
 const int N = 256;
 char error[N] = {0};
 
+void print_stat_info(struct stat buf) {
+  printf("device: %d\n", buf.st_dev);
+  printf("inode: %llu\n", buf.st_ino);
+  printf("inode protection mode: %d\n", buf.st_mode);
+  printf("# of hard-links: %d\n", buf.st_nlink);
+  printf("uid: %d\n", buf.st_uid);
+  printf("gid: %d\n", buf.st_gid);
+}
+
 int main(int argc, char *argv[]) {
   jmp_buf env;
 
@@ -24,12 +33,8 @@ int main(int argc, char *argv[]) {
       longjmp(env, 1);
     }
 
-    printf("device: %d\n", buf.st_dev);
-    printf("inode: %llu\n", buf.st_ino);
-    printf("inode protection mode: %d\n", buf.st_mode);
-    printf("# of hard-links: %d\n", buf.st_nlink);
-    printf("uid: %d\n", buf.st_uid);
-    printf("gid: %d\n", buf.st_gid);
+    print_stat_info(buf);
+
 
   } else {
     fprintf(stderr, "Error: %s\n", error);
