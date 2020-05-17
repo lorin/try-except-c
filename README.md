@@ -2,9 +2,9 @@
 
 A little experiment to play with setjmp/longjmp functions to emulate exception handling in C.
 
-I implemented `try`, `catch`, and `throw` as macros in [except.h].
+I implemented `try`, `catch`, and `throw` as macros in [except.h](except.h).
 
-You can see them in action in [try-except-c.c]:
+You can see them in action in [try-except-c.c](try-except-c.c):
 
 ```c
   try {
